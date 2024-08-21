@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-4 Chat Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div id="chat-window" class="chat-window"></div>
+        <form id="chat-form" method="POST" enctype="multipart/form-data" onsubmit="sendMessage(); return false;">
+            <input type="text" id="user-input" name="message" placeholder="Type your message here..." autofocus>
+            <input type="file" id="file-upload" name="files" multiple>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const chatWindow = document.getElementById('chat-window');
+            const form = document.getElementById('chat-form');
+            const formData = new FormData(form);
+            
+            fetch('/chat', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const userMessage = formData.get("message");
+                chatWindow.innerHTML += `<div><strong>You:</strong> ${userMessage}</div>`;
+                chatWindow.innerHTML += `<div><strong>GPT-4:</strong> ${data.response}</div>`;
+                document.getElementById('user-input').value = "";
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            });
+        }
+
+        document.getElementById('user-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
+
