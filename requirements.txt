@@ -4,3 +4,4 @@ Werkzeug==2.3.7
 Pillow==10.0.0
 pytesseract==0.3.10
 openai==0.27.8
+gunicorn==20.1.0
