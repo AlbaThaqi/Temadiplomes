@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPT-4 Chat Interface</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/homestyle.css') }}">
 </head>
 <body>
     <div class="chat-container">
         <div id="chat-window" class="chat-window"></div>
         <form id="chat-form" method="POST" enctype="multipart/form-data" onsubmit="sendMessage(); return false;">
-            <input type="text" id="user-input" name="message" placeholder="Type your message here..." autofocus>
+            <input type="text" id="user-input" name="message" placeholder="Type your message here..." autofocus width="200">
             <input type="file" id="file-upload" name="files" multiple>
             <button type="submit">Send</button>
         </form>
@@ -44,4 +44,3 @@
     </script>
 </body>
 </html>
-
