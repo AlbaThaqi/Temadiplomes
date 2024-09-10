@@ -19,7 +19,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'  # Folder to store uploaded files
 db = SQLAlchemy(app)
 
 # Set your OpenAI API key
-openai.api_key = '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'
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # Ensure the upload folder exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
